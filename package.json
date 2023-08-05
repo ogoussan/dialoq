@@ -102,10 +102,8 @@
     "connect-pg-simple": "^8.0.0",
     "core-js": "^3.6.5",
     "date-fns": "^2.29.3",
-    "exceljs": "^4.3.0",
     "express-session": "^1.17.3",
     "framer-motion": "^7.6.7",
-    "js-file-download": "^0.4.12",
     "lodash": "^4.17.21",
     "openai": "^3.3.0",
     "passport": "^0.6.0",
@@ -119,7 +117,6 @@
     "regenerator-runtime": "0.13.7",
     "rxjs": "^7.0.0",
     "tslib": "^2.3.0",
-    "typeorm": "^0.3.14",
-    "xlsx-populate": "^1.21.0"
+    "typeorm": "^0.3.14"
   }
 }
