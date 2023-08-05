@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Document } from '@tdqa/types';
+import { Document } from '@dialoq/types';
 
 export class DocumentDto implements Document {
   @ApiProperty({ readOnly: true, format: 'uuid' })

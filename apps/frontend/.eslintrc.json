@@ -1,10 +1,15 @@
 {
-  "extends": ["plugin:@nx/react", "../../.eslintrc.json"],
+  "extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {}
+      "parserOptions": {
+        "project": ["apps/frontend/tsconfig.*?.json"]
+      },
+      "rules": {
+        "react/self-closing-comp": "error"
+      }
     },
     {
       "files": ["*.ts", "*.tsx"],

@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import {ResponseError} from "@tdqa/types";
+import { ResponseError } from '@dialoq/types';
 
 export class ErrorDto implements ResponseError {
   @ApiProperty({ examples: [500, 400, 401] })

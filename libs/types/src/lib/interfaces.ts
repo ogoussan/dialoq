@@ -1,3 +1,6 @@
+import { Language, Role, TaskType } from './enums';
+import { Subtopic } from './types';
+
 export interface ResponseError {
   statusCode: number;
   error: string;
@@ -10,23 +13,34 @@ export interface Document {
   updated_at: Date;
 }
 
-
-export interface Attribute {
-  key: string;
-  value: string;
+export interface Auth {
+  authenticated: boolean;
+  userId?: string;
 }
 
-export interface Span  {
-  traceId: string;
-  spanId: string;
-  parentSpanId?: string;
+export interface User extends Document {
+  email: string;
+  firstname: string;
+  lastname: string;
+  role?: Role;
+  image?: string;
+}
+
+export interface Lesson extends Document {
   name: string;
-  startTimeUnixNano: number;
-  endTimeUnixNano: number;
-  attributes: Attribute[];
+  userId: string;
+  language: Language;
+  theme: string;
+  subtopic: Subtopic;
+  tasks?: Task[];
 }
 
-export interface TraceData {
-  spans: Span[];
+export interface Task extends Document {
+  question: string;
+  translation: string;
+  modelAnswers: string;
+  isCompleted?: boolean;
+  type: TaskType;
+  lessonId: string;
+  lesson?: Lesson;
 }
-

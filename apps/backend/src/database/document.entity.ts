@@ -1,4 +1,4 @@
-import { Document } from '@tdqa/types';
+import { Document } from '@dialoq/types';
 import {
   BaseEntity,
   CreateDateColumn,

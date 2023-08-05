@@ -10,7 +10,8 @@
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
-      "@tdqa/types": ["libs/types/src/index.ts"]
+      "@dialoq/types": ["libs/types/src/index.ts"],
+      "@dialoq/utils": ["libs/utils/src/index.ts"]
     },
     "rootDir": ".",
     "skipDefaultLibCheck": true,
