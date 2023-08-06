@@ -49,7 +49,12 @@ const DrawerContainer = ({
       size="full"
     >
       <DrawerOverlay />
-      <DrawerContent ref={initialFocusRef} as="form" onSubmit={handleSubmit}>
+      <DrawerContent
+        ref={initialFocusRef}
+        as="form"
+        onSubmit={handleSubmit}
+        sx={{ '&': { minH: '100dvh' } }}
+      >
         <DrawerCloseButton />
         <DrawerHeader>{title}</DrawerHeader>
 
