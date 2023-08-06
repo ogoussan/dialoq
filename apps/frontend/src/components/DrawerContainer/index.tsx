@@ -54,12 +54,14 @@ const DrawerContainer = ({
         as="form"
         onSubmit={handleSubmit}
         sx={{ '&': { minH: '100dvh' } }}
+        display="flex"
+        flexDirection="column"
       >
         <DrawerCloseButton />
         <DrawerHeader>{title}</DrawerHeader>
-
-        <DrawerBody overflowY={'scroll'}>{children}</DrawerBody>
-
+        <DrawerBody overflowY={'scroll'} flex="1 0 auto">
+          {children}
+        </DrawerBody>
         <DrawerFooter>
           <Button
             disabled={isLoading}
