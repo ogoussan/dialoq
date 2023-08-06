@@ -24,7 +24,7 @@ interface Props {
   isLoading?: boolean;
 }
 
-const ModalContainer = ({
+const DrawerContainer = ({
   title,
   isOpen,
   onSubmit,
@@ -52,14 +52,9 @@ const ModalContainer = ({
       <DrawerContent ref={initialFocusRef} as="form" onSubmit={handleSubmit}>
         <DrawerCloseButton />
         <DrawerHeader>{title}</DrawerHeader>
-        <DrawerBody
-          display="grid"
-          gridTemplateColumns="1fr 1fr"
-          gap="4"
-          flexDirection="column"
-        >
-          {children}
-        </DrawerBody>
+
+        <DrawerBody overflowY={'scroll'}>{children}</DrawerBody>
+
         <DrawerFooter>
           <Button
             disabled={isLoading}
@@ -77,4 +72,4 @@ const ModalContainer = ({
   );
 };
 
-export default ModalContainer;
+export default DrawerContainer;

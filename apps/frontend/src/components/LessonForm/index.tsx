@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
 import {
-  Box,
   FormControl,
   FormLabel,
   Heading,
@@ -38,32 +37,34 @@ const getTopics = (language?: Language): Subtopic[] => {
 
 const LessonForm = ({ lessonData, onChange }: Props): ReactElement => {
   return (
-    <VStack gap="16px" alignItems="flex-start">
+    <VStack gap="4" alignItems="flex-start" width={'full'}>
       <FormControl isRequired>
         <FormLabel>Name</FormLabel>
         <Input
           value={lessonData.name}
           onChange={(event) => onChange('name', event.target.value)}
+          width={'full'}
         />
       </FormControl>
-      <Box>
-        <Heading size="md">What would you like to practice?</Heading>
-        <FormControl isRequired>
-          <FormLabel>Topic</FormLabel>
-          <Text fontSize={12}>e.g. Work, Travel, Hobbies...</Text>
-          <Input
-            value={lessonData.theme}
-            onChange={(event) => onChange('theme', event.target.value)}
-          />
-        </FormControl>
-        <SelectInput
-          label="Grammar concept"
-          options={getTopics(lessonData.language)}
-          value={lessonData.subtopic as string}
-          onChange={(value) => onChange('subtopic', value)}
-          getOptionLabel={(option) => option}
+
+      <Heading marginTop={4} size="md">
+        What would you like to practice?
+      </Heading>
+      <FormControl isRequired>
+        <FormLabel>Topic</FormLabel>
+        <Text fontSize={12}>e.g. Work, Travel, Hobbies...</Text>
+        <Input
+          value={lessonData.theme}
+          onChange={(event) => onChange('theme', event.target.value)}
         />
-      </Box>
+      </FormControl>
+      <SelectInput
+        label="Grammar concept"
+        options={getTopics(lessonData.language)}
+        value={lessonData.subtopic as string}
+        onChange={(value) => onChange('subtopic', value)}
+        getOptionLabel={(option) => option}
+      />
     </VStack>
   );
 };
