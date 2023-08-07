@@ -1,18 +1,13 @@
-import {
-  FormEventHandler,
-  PropsWithChildren,
-  ReactElement,
-  useRef,
-} from 'react';
+import { FormEventHandler, PropsWithChildren, ReactElement } from 'react';
 import {
   Button,
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
 } from '@chakra-ui/react';
 
 interface Props {
@@ -24,7 +19,7 @@ interface Props {
   isLoading?: boolean;
 }
 
-const DrawerContainer = ({
+const ModalContainer = ({
   title,
   isOpen,
   onSubmit,
@@ -33,36 +28,19 @@ const DrawerContainer = ({
   children,
   isLoading,
 }: PropsWithChildren<Props>): ReactElement => {
-  const initialFocusRef = useRef(null);
-
   const handleSubmit: FormEventHandler = (event) => {
     event.preventDefault();
     onSubmit();
   };
 
   return (
-    <Drawer
-      isOpen={isOpen}
-      onClose={onClose}
-      initialFocusRef={initialFocusRef}
-      placement="bottom"
-      size="full"
-    >
-      <DrawerOverlay />
-      <DrawerContent
-        ref={initialFocusRef}
-        as="form"
-        onSubmit={handleSubmit}
-        sx={{ '&': { minH: '100dvh' } }}
-        display="flex"
-        flexDirection="column"
-      >
-        <DrawerCloseButton />
-        <DrawerHeader>{title}</DrawerHeader>
-        <DrawerBody overflowY={'scroll'} flex="1 0 auto">
-          {children}
-        </DrawerBody>
-        <DrawerFooter>
+    <Modal isOpen={isOpen} onClose={onClose} size="full">
+      <ModalOverlay />
+      <ModalContent as="form" onSubmit={handleSubmit}>
+        <ModalCloseButton />
+        <ModalHeader>{title}</ModalHeader>
+        <ModalBody>{children}</ModalBody>
+        <ModalFooter>
           <Button
             disabled={isLoading}
             variant="ghost"
@@ -73,10 +51,10 @@ const DrawerContainer = ({
           <Button isLoading={isLoading} type="submit">
             {confirmText}
           </Button>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 };
 
-export default DrawerContainer;
+export default ModalContainer;

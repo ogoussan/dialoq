@@ -37,7 +37,7 @@ const getTopics = (language?: Language): Subtopic[] => {
 
 const LessonForm = ({ lessonData, onChange }: Props): ReactElement => {
   return (
-    <VStack gap="4" alignItems="flex-start" width={'full'}>
+    <VStack gap="4" alignItems="flex-start">
       <FormControl isRequired>
         <FormLabel>Name</FormLabel>
         <Input
