@@ -15,6 +15,8 @@ const vars = [
   'NX_GOOGLE_CLIENT_ID',
   'NX_GOOGLE_CLIENT_KEY',
   'NX_SESSION_SECRET',
+  'NX_OPENAI_API_KEY',
+  'NX_OPENAI_ORG_ID',
 ];
 
 function getMissingEnvs(envs) {

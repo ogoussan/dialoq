@@ -11,8 +11,20 @@ const config: ThemeConfig = {
 
 const components: Record<string, StyleConfig> = {};
 
+const styles = {
+  global: () => ({
+    // Fix missing modal footer on iOS 15.
+    '.chakra-modal__content': {
+      '@supports(height: -webkit-fill-available)': {
+        minHeight: '-webkit-fill-available !important',
+      },
+    },
+  }),
+};
+
 const theme = extendTheme(
   {
+    styles,
     config,
     components,
     colors: {

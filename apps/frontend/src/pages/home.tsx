@@ -16,9 +16,13 @@ const HomePage = (): ReactElement => {
   >([]);
 
   useEffect(() => {
-    setLessonsForCurrentLanguage(
-      lessons.filter((lesson) => language === lesson.language)
-    );
+    const sortedLessons = lessons
+      .filter((lesson) => language === lesson.language)
+      .sort(
+        (a, b) =>
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      );
+    setLessonsForCurrentLanguage(sortedLessons);
   }, [language, lessons]);
 
   return (

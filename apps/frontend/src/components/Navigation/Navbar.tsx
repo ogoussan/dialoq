@@ -1,24 +1,25 @@
 import {
   Avatar,
+  Button,
   Flex,
-  Heading,
-  IconButton,
+  Hide,
+  HStack,
   Menu,
   MenuButton,
 } from '@chakra-ui/react';
-import { ReactElement, useMemo } from 'react';
-import { FaBars } from 'react-icons/fa';
+import React, { ReactElement, useMemo } from 'react';
 import { env } from '../../env';
-import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import { useAuthUser } from '../../services/user.service';
 import { BANNER_HEIGHT } from '../DevBanner';
 import { UserMenu } from './UserMenu';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import LogoFull from '../LogoFull';
+import { AiOutlineArrowRight } from 'react-icons/ai';
 
 const Navbar = (): ReactElement => {
   const { data: user } = useAuthUser();
+  const location = useLocation();
   const avatar = useMemo(() => user?.image, [user?.image]);
-  const title = useDocumentTitle();
 
   return (
     <Flex
@@ -37,28 +38,29 @@ const Navbar = (): ReactElement => {
       alignItems="center"
       justifyContent="space-between"
     >
-      <IconButton
-        aria-label="menu"
-        variant="unstyled"
-        color="gray.800"
-        _dark={{ color: 'gray.200' }}
-        display={{ md: 'none' }}
-        icon={<FaBars />}
-      />
       <Link to="/">
-        <Heading size="md" color="primary.500" cursor="pointer">
-          {title}
-        </Heading>
+        <LogoFull maxWidth={['50%', '70%', '70%']} />
       </Link>
-      <Menu>
-        <MenuButton
-          as={Avatar}
-          size="sm"
-          name={`${user?.firstname} ${user?.lastname}`}
-          src={avatar}
-        />
-        <UserMenu />
-      </Menu>
+      <HStack gap={8}>
+        {location.pathname === '/' && (
+          <Hide below={'md'}>
+            <Link to={'/app'}>
+              <Button size={'sm'} rightIcon={<AiOutlineArrowRight />}>
+                Get Started
+              </Button>
+            </Link>
+          </Hide>
+        )}
+        <Menu>
+          <MenuButton
+            as={Avatar}
+            size="sm"
+            name={`${user?.firstname} ${user?.lastname}`}
+            src={avatar}
+          />
+          <UserMenu />
+        </Menu>
+      </HStack>
     </Flex>
   );
 };
