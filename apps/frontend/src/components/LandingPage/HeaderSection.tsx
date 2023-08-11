@@ -40,7 +40,7 @@ const HeaderSection = (): JSX.Element => {
         <Text
           maxWidth={['100%', '60%', '60%']}
           fontWeight={'normal'}
-          size={['md', 'lg', 'lg']}
+          fontSize={['md', 'lg', 'xl']}
         >
           Take your language skills to the next level with revolutionary AI
           support for your individual way of studying.
