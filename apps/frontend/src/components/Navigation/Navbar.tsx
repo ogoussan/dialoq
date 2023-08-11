@@ -18,10 +18,8 @@ import { AiOutlineArrowRight } from 'react-icons/ai';
 
 const Navbar = (): ReactElement => {
   const { data: user } = useAuthUser();
-  const avatar = useMemo(() => user?.image, [user?.image]);
-  // const title = useDocumentTitle();
-
   const location = useLocation();
+  const avatar = useMemo(() => user?.image, [user?.image]);
 
   return (
     <Flex
@@ -43,10 +41,6 @@ const Navbar = (): ReactElement => {
       <Link to="/">
         <LogoFull maxWidth={['50%', '70%', '70%']} />
       </Link>
-      {/* TODO center the title*/}
-      {/*<Heading size="md" color="primary.500" cursor="pointer">*/}
-      {/*  {title}*/}
-      {/*</Heading>*/}
       <HStack gap={8}>
         {location.pathname === '/' && (
           <Hide below={'md'}>

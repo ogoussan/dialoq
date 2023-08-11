@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Box,
   Button,
   Heading,
   Hide,
@@ -10,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import DialoqMockup from '../DialoqMockup';
 
 const HeaderSection = (): JSX.Element => {
   return (
@@ -50,7 +52,9 @@ const HeaderSection = (): JSX.Element => {
         </Link>
       </VStack>
       <Hide below={'md'}>
-        <Heading>INSERT IMAGE HERE</Heading>
+        <Box>
+          <DialoqMockup />
+        </Box>
       </Hide>
     </HStack>
   );
