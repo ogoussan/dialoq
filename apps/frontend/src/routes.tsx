@@ -2,6 +2,7 @@ import { Role } from '@dialoq/types';
 import HomePage from './pages/home';
 import Lesson from './pages/lesson';
 import Profile from './pages/profile';
+import LandingPage from './pages/landing-page';
 
 interface PageRoute {
   path: `/${string}`;
@@ -12,19 +13,24 @@ interface PageRoute {
 
 export const navigationRoutes: PageRoute[] = [
   {
+    component: <LandingPage />,
+    label: 'Landing Page',
+    path: '/',
+  },
+  {
     component: <HomePage />,
     label: 'Home',
-    path: '/',
+    path: '/app',
   },
   {
     component: <Lesson />,
     label: 'Lesson',
-    path: '/lesson/:id',
+    path: '/app/lesson/:id',
   },
   {
     component: <Profile />,
     label: 'Profile',
-    path: '/profile',
+    path: '/app/profile',
   },
 ];
 
