@@ -1,15 +1,14 @@
-import { Prompt } from '@dialoq/types';
+import { Prompt, Task } from '@dialoq/types';
 import { Injectable } from '@nestjs/common';
 import { Configuration, OpenAIApi } from 'openai';
-import { Logger } from '@nestjs/common';
 import { env } from '../../env';
+import { logger } from 'nx/src/utils/logger';
 
 @Injectable()
 export class OpenAiService {
   private openai: OpenAIApi;
 
   private defaultOptions = { model: 'gpt-3.5-turbo', temperature: 0.7 };
-  private logger = new Logger('OpenAiService');
 
   public constructor() {
     const configuration = new Configuration({
@@ -20,7 +19,10 @@ export class OpenAiService {
     this.openai = new OpenAIApi(configuration);
   }
 
-  public createChatCompletion = async <T>(prompt: Prompt<T>): Promise<any> => {
+  public createChatCompletion = async <T>(
+    prompt: Prompt<T>,
+    lessonId: string
+  ): Promise<Partial<Task>[]> => {
     const response = await this.openai.createChatCompletion({
       ...this.defaultOptions,
       messages: [{ role: 'user' as const, content: prompt.render() }],
@@ -28,7 +30,11 @@ export class OpenAiService {
 
     const result = response.data.choices[0];
 
-    this.logger.log('created open ai chat completion', {
+    const parsedOutput = result?.message?.content
+      ? prompt.parse(result.message.content, lessonId)
+      : [];
+
+    logger.log('created open ai chat completion', {
       openai: {
         model: response.data.model,
         prompt: {
@@ -45,6 +51,6 @@ export class OpenAiService {
       },
     });
 
-    return result?.message?.content;
+    return parsedOutput;
   };
 }
