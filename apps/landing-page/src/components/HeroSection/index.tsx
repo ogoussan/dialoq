@@ -45,7 +45,7 @@ const Index = (): JSX.Element => {
           Take your language skills to the next level with revolutionary AI
           support for your individual way of studying.
         </Text>
-        <a href={env.APP_URL}>
+        <a href={`${env.APP_URL}/app`}>
           <Button size={['md', 'lg', 'lg']} rightIcon={<AiOutlineArrowRight />}>
             Get Started
           </Button>

@@ -28,7 +28,7 @@ const Navbar = (): ReactElement => {
       </Link>
       <HStack gap={8}>
         <Hide below={'md'}>
-          <a href={env.APP_URL}>
+          <a href={`${env.APP_URL}/app`}>
             <Button size={'sm'} rightIcon={<AiOutlineArrowRight />}>
               Get Started
             </Button>
