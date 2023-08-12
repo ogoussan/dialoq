@@ -10,7 +10,7 @@
     "test": "nx run-many --target=test --all=true",
     "dev": "npm run checkEnv && nx run-many --target=serve --all=true",
     "lint": "nx run-many --target=lint --all=true",
-    "gen:theme-typings": "chakra-cli tokens apps/frontend/src/theme.ts",
+    "gen:theme-typings": "chakra-cli tokens apps/frontend/src/theme.ts && chakra-cli tokens apps/landing-page/src/theme.ts",
     "postinstall": "npm run gen:theme-typings",
     "prepare": "husky install",
     "migrations:generate": "nx run backend:typeorm-generate-migrations",

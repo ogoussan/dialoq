@@ -1,14 +1,16 @@
 import React from 'react';
 import { VStack, Text, HStack, Icon } from '@chakra-ui/react';
 
-import HeroSection from '../components/LandingPage/HeaderSection';
-import FeaturesSection from '../components/LandingPage/FeaturesSection';
+import HeroSection from '../components/HeroSection';
+import FeaturesSection from '../components/Feature/FeaturesSection';
 import LogoFull from '../components/LogoFull';
 import { AiOutlineCopyrightCircle } from 'react-icons/ai';
+import Navbar from '../components/Navbar/Navbar';
 
 const LandingPage = (): JSX.Element => {
   return (
     <VStack width={'100%'}>
+      <Navbar />
       <HeroSection />
       <FeaturesSection />
 

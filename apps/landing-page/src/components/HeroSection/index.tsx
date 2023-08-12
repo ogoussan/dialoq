@@ -10,10 +10,10 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { AiOutlineArrowRight } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
 import DialoqMockup from '../DialoqMockup';
+import { env } from '../../env';
 
-const HeaderSection = (): JSX.Element => {
+const Index = (): JSX.Element => {
   return (
     <HStack
       height={'70vh'}
@@ -45,11 +45,11 @@ const HeaderSection = (): JSX.Element => {
           Take your language skills to the next level with revolutionary AI
           support for your individual way of studying.
         </Text>
-        <Link to={'/app'}>
+        <a href={`${env.APP_URL}/app`}>
           <Button size={['md', 'lg', 'lg']} rightIcon={<AiOutlineArrowRight />}>
             Get Started
           </Button>
-        </Link>
+        </a>
       </VStack>
       <Hide below={'md'}>
         <Box>
@@ -60,4 +60,4 @@ const HeaderSection = (): JSX.Element => {
   );
 };
 
-export default HeaderSection;
+export default Index;

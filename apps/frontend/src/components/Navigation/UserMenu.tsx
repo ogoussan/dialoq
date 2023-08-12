@@ -8,7 +8,7 @@ export const UserMenu = (): JSX.Element => {
 
   return (
     <MenuList>
-      <MenuItem icon={<AiOutlineUser />} as={Link} to="/profile">
+      <MenuItem icon={<AiOutlineUser />} as={Link} to="/app/profile">
         Profile
       </MenuItem>
       <MenuItem

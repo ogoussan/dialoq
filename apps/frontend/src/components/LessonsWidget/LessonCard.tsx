@@ -73,7 +73,7 @@ const LessonCard = ({ lesson }: { lesson: Lesson }): ReactElement => {
         </VStack>
       </CardBody>
       <CardFooter>
-        <Button onClick={() => navigate(`/lesson/${lesson.id}`)}>
+        <Button onClick={() => navigate(`/app/lesson/${lesson.id}`)}>
           Go to Lesson
         </Button>
       </CardFooter>
