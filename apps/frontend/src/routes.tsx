@@ -2,35 +2,33 @@ import { Role } from '@dialoq/types';
 import HomePage from './pages/home';
 import Lesson from './pages/lesson';
 import Profile from './pages/profile';
-import LandingPage from './pages/landing-page';
 
 interface PageRoute {
   path: `/${string}`;
   component: JSX.Element;
   label: string;
   restrictions?: Role[];
+  isProtected?: boolean;
 }
 
 export const navigationRoutes: PageRoute[] = [
   {
-    component: <LandingPage />,
-    label: 'Landing Page',
-    path: '/',
-  },
-  {
     component: <HomePage />,
     label: 'Home',
-    path: '/app',
+    path: '/',
+    isProtected: true,
   },
   {
     component: <Lesson />,
     label: 'Lesson',
-    path: '/app/lesson/:id',
+    path: '/lesson/:id',
+    isProtected: true,
   },
   {
     component: <Profile />,
     label: 'Profile',
-    path: '/app/profile',
+    path: '/profile',
+    isProtected: true,
   },
 ];
 
