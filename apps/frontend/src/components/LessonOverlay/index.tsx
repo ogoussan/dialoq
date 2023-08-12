@@ -4,7 +4,7 @@ import LessonForm from '../LessonForm';
 import { Language, Lesson, RequestBody } from '@dialoq/types';
 import { useAuthUser } from '../../services/user.service';
 import { useAddLesson } from '../../services/lesson.service';
-import { HStack, Show, Spinner, Text } from '@chakra-ui/react';
+import { HStack, Progress, Show, Text } from '@chakra-ui/react';
 import DrawerContainer from '../DrawerContainer';
 
 interface Props {
@@ -63,7 +63,10 @@ const LessonOverlay = ({ isOpen, onClose, language }: Props): ReactElement => {
           isLoading={isLoading}
         >
           {isLoading ? (
-            <Spinner />
+            <>
+              <Text>Generating new lesson. This may take a while...</Text>
+              <Progress size="xs" isIndeterminate />
+            </>
           ) : (
             <LessonForm lessonData={lessonData} onChange={handleChange} />
           )}
@@ -81,8 +84,8 @@ const LessonOverlay = ({ isOpen, onClose, language }: Props): ReactElement => {
         >
           {isLoading ? (
             <HStack>
-              <Text>Generating new lesson. This may take a while.</Text>
-              <Spinner />
+              <Text>Generating new lesson. This may take a while...</Text>
+              <Progress size="xs" isIndeterminate />
             </HStack>
           ) : (
             <LessonForm lessonData={lessonData} onChange={handleChange} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Card, HStack, Text } from '@chakra-ui/react';
 
 interface TaskQuestionTranslationProps {
@@ -9,7 +9,7 @@ interface TaskQuestionTranslationProps {
 const TaskQuestionTranslation = ({
   translation,
   highlightModelAnswer = false,
-}: TaskQuestionTranslationProps): JSX.Element => {
+}: TaskQuestionTranslationProps): ReactElement => {
   const regex = /\[.*?]/;
   const tokens = translation.split(/\s+/);
 

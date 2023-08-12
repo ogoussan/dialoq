@@ -1,0 +1,76 @@
+{
+  "name": "landing-page",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/landing-page",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "swc",
+        "outputPath": "dist/apps/landing-page",
+        "index": "apps/landing-page/public/index.html",
+        "baseHref": "/",
+        "main": "apps/landing-page/src/main.tsx",
+        "polyfills": "apps/landing-page/src/polyfills.ts",
+        "tsConfig": "apps/landing-page/tsconfig.app.json",
+        "assets": ["apps/landing-page/public"],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "apps/landing-page/webpack.config.js",
+        "isolatedConfig": true
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "landing-page:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "landing-page:build:development"
+        },
+        "production": {
+          "buildTarget": "landing-page:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/landing-page/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/landing-page/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

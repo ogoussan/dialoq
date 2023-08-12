@@ -53,7 +53,7 @@ export class AuthController {
   })
   @ApiOkResponse()
   @UseGuards(GoogleAuthGuard)
-  @Redirect(env.APP_URL)
+  @Redirect(`${env.APP_URL}/app`)
   public googleAuthRedirect(): {
     message: string;
   } {
