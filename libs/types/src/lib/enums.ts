@@ -5,6 +5,8 @@ export enum Role {
 
 export enum TaskType {
   Cloze = 'cloze',
+  Select = 'select',
+  Arrange = 'arrange',
 }
 
 export enum Language {
@@ -21,11 +23,11 @@ export enum GermanSuperTopics {
 export enum GermanTopic {
   Articles = 'articles',
   PossessivePronouns = 'possessivePronouns',
-  PresentTense = 'presentTense',
+  PresentTenseVerbs = 'presentTenseVerbs',
 }
 
 export enum FrenchTopic {
   Articles = 'articles',
-  PresentTense = 'presentTense',
+  PresentTenseVerbs = 'presentTenseVerbs',
   CompositePastTense = 'compositePastTense',
 }

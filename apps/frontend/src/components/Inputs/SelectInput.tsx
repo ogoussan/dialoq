@@ -17,7 +17,6 @@ const SelectInput = <T,>({
   label,
   onChange,
   getOptionLabel,
-  getOptionValue,
 }: Props<T>): ReactElement => {
   return (
     <FormControl>
@@ -25,10 +24,6 @@ const SelectInput = <T,>({
       <Select value={value || ''} onChange={(e) => onChange(e.target.value)}>
         <option value="" />
         {options.map((option) => {
-          const value = getOptionValue
-            ? getOptionValue(option)
-            : getOptionLabel(option);
-
           return (
             <option key={getOptionLabel(option)} value={value}>
               {getOptionLabel(option)}
