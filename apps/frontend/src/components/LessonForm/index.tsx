@@ -15,7 +15,6 @@ import {
   Subtopic,
 } from '@dialoq/types';
 import SelectInput from '../Inputs/SelectInput';
-import { CamelCaseToTitleCase } from '@dialoq/utils';
 
 interface Props {
   lessonData: Partial<Lesson>;
@@ -64,7 +63,7 @@ const LessonForm = ({ lessonData, onChange }: Props): ReactElement => {
         options={getTopics(lessonData.language)}
         value={lessonData.subtopic as string}
         onChange={(value) => onChange('subtopic', value)}
-        getOptionLabel={(option) => CamelCaseToTitleCase(option)}
+        getOptionLabel={(option) => option}
       />
     </VStack>
   );

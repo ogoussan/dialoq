@@ -1,7 +1,7 @@
 {
-  "name": "frontend",
+  "name": "landing-page",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/frontend",
+  "sourceRoot": "apps/landing-page",
   "projectType": "application",
   "targets": {
     "build": {
@@ -10,16 +10,16 @@
       "defaultConfiguration": "production",
       "options": {
         "compiler": "swc",
-        "outputPath": "dist/apps/frontend",
-        "index": "apps/frontend/public/index.html",
+        "outputPath": "dist/apps/landing-page",
+        "index": "apps/landing-page/public/index.html",
         "baseHref": "/",
-        "main": "apps/frontend/src/main.tsx",
-        "polyfills": "apps/frontend/src/polyfills.ts",
-        "tsConfig": "apps/frontend/tsconfig.app.json",
-        "assets": ["apps/frontend/public"],
+        "main": "apps/landing-page/src/main.tsx",
+        "polyfills": "apps/landing-page/src/polyfills.ts",
+        "tsConfig": "apps/landing-page/tsconfig.app.json",
+        "assets": ["apps/landing-page/public"],
         "styles": [],
         "scripts": [],
-        "webpackConfig": "apps/frontend/webpack.config.js",
+        "webpackConfig": "apps/landing-page/webpack.config.js",
         "isolatedConfig": true
       },
       "configurations": {
@@ -43,16 +43,15 @@
       "executor": "@nrwl/webpack:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "frontend:build",
-        "hmr": true,
-        "port": 4201
+        "buildTarget": "landing-page:build",
+        "hmr": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "frontend:build:development"
+          "buildTarget": "landing-page:build:development"
         },
         "production": {
-          "buildTarget": "frontend:build:production",
+          "buildTarget": "landing-page:build:production",
           "hmr": false
         }
       }
@@ -61,14 +60,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/frontend/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/landing-page/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/frontend/jest.config.ts",
+        "jestConfig": "apps/landing-page/jest.config.ts",
         "passWithNoTests": true
       }
     }

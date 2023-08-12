@@ -81,15 +81,27 @@ const App = (): ReactElement => {
         <VStack gap={8} width="100vw">
           <Navbar />
           <Routes>
-            {routes
-              .filter(
-                ({ restrictions }) =>
-                  !restrictions?.length ||
-                  restrictions.includes(user?.role || Role.User)
-              )
-              .map(({ path, component }) => (
-                <Route path={path} element={component} key={`route-${path}`} />
-              ))}
+            <Route
+              path={'/app/*'}
+              element={
+                <Routes>
+                  {routes
+                    .filter(
+                      ({ restrictions }) =>
+                        !restrictions?.length ||
+                        restrictions.includes(user?.role || Role.User)
+                    )
+                    .map(({ path, component }) => (
+                      <Route
+                        path={path}
+                        element={component}
+                        key={`route-${path}`}
+                      />
+                    ))}
+                </Routes>
+              }
+            />
+
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </VStack>

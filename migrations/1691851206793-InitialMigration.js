@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { MigrationInterface, QueryRunner } = require('typeorm');
 
-module.exports = class InitialMigration1691235408021 {
-  name = 'InitialMigration1691235408021';
+module.exports = class InitialMigration1691851206793 {
+  name = 'InitialMigration1691851206793';
 
   async up(queryRunner) {
     await queryRunner.query(
@@ -12,10 +12,10 @@ module.exports = class InitialMigration1691235408021 {
       `CREATE TABLE "user" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "email" character varying NOT NULL, "firstname" character varying NOT NULL, "lastname" character varying NOT NULL, "role" "public"."user_role_enum" NOT NULL DEFAULT 'user', "image" character varying, CONSTRAINT "UQ_e12875dfb3b1d92d7d7c5377e22" UNIQUE ("email"), CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY ("id"))`
     );
     await queryRunner.query(
-      `CREATE TYPE "public"."task_type_enum" AS ENUM('cloze')`
+      `CREATE TYPE "public"."task_type_enum" AS ENUM('cloze', 'select', 'arrange')`
     );
     await queryRunner.query(
-      `CREATE TABLE "task" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "modelAnswers" character varying NOT NULL, "question" character varying NOT NULL, "translation" character varying NOT NULL, "type" "public"."task_type_enum" NOT NULL, "isCompleted" boolean, "lessonId" uuid NOT NULL, CONSTRAINT "PK_fb213f79ee45060ba925ecd576e" PRIMARY KEY ("id"))`
+      `CREATE TABLE "task" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "answer" character varying NOT NULL, "question" character varying NOT NULL, "translation" character varying NOT NULL, "type" "public"."task_type_enum" NOT NULL, "options" character varying, "isCompleted" boolean, "lessonId" uuid NOT NULL, CONSTRAINT "PK_fb213f79ee45060ba925ecd576e" PRIMARY KEY ("id"))`
     );
     await queryRunner.query(
       `CREATE TYPE "public"."lesson_language_enum" AS ENUM('german', 'french')`
