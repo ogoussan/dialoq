@@ -6,7 +6,7 @@
     "checkEnv": "node ./tools/checkEnv.js",
     "start": "npm run checkEnv && nx serve",
     "start:prod": "node dist/apps/backend/main.js",
-    "build": "nx run-many --target=build --projects=frontend,backend --parallel=true",
+    "build": "nx run-many --target=build --projects=landing-page,frontend,backend --parallel=true",
     "test": "nx run-many --target=test --all=true",
     "dev": "npm run checkEnv && nx run-many --target=serve --all=true",
     "lint": "nx run-many --target=lint --all=true",

@@ -2,11 +2,12 @@ import { Prompt, Task } from '@dialoq/types';
 import { Injectable } from '@nestjs/common';
 import { Configuration, OpenAIApi } from 'openai';
 import { env } from '../../env';
-import { logger } from 'nx/src/utils/logger';
+import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class OpenAiService {
   private openai: OpenAIApi;
+  private logger = new Logger('OpenApiService');
 
   private defaultOptions = { model: 'gpt-3.5-turbo', temperature: 0.7 };
 
@@ -34,7 +35,7 @@ export class OpenAiService {
       ? prompt.parse(result.message.content, lessonId)
       : [];
 
-    logger.log('created open ai chat completion', {
+    this.logger.log('created open ai chat completion', {
       openai: {
         model: response.data.model,
         prompt: {
