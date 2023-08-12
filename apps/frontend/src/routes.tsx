@@ -8,7 +8,6 @@ interface PageRoute {
   component: JSX.Element;
   label: string;
   restrictions?: Role[];
-  isProtected?: boolean;
 }
 
 export const navigationRoutes: PageRoute[] = [
@@ -16,19 +15,16 @@ export const navigationRoutes: PageRoute[] = [
     component: <HomePage />,
     label: 'Home',
     path: '/',
-    isProtected: true,
   },
   {
     component: <Lesson />,
     label: 'Lesson',
     path: '/lesson/:id',
-    isProtected: true,
   },
   {
     component: <Profile />,
     label: 'Profile',
     path: '/profile',
-    isProtected: true,
   },
 ];
 

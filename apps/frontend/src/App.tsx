@@ -82,7 +82,7 @@ const App = (): ReactElement => {
           <Navbar />
           <Routes>
             <Route
-              path={'/app'}
+              path={'/app/*'}
               element={
                 <Routes>
                   {routes
