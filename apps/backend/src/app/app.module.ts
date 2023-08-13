@@ -17,6 +17,11 @@ import { LessonModule } from '../api/lesson/lesson.module';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'frontend'),
       exclude: ['/api/(.*)'],
+      serveRoot: '/app',
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'landing-page'),
+      serveRoot: '/',
     }),
     AuthModule,
     UserModule,
