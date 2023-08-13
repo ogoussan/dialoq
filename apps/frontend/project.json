@@ -12,7 +12,7 @@
         "compiler": "swc",
         "outputPath": "dist/apps/frontend",
         "index": "apps/frontend/public/index.html",
-        "baseHref": "/app",
+        "baseHref": "/app/",
         "main": "apps/frontend/src/main.tsx",
         "polyfills": "apps/frontend/src/polyfills.ts",
         "tsConfig": "apps/frontend/tsconfig.app.json",
