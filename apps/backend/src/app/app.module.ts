@@ -14,15 +14,17 @@ import { LessonModule } from '../api/lesson/lesson.module';
   imports: [
     PassportModule.register({ session: true }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'frontend'),
-      exclude: ['/api/(.*)'],
-      serveRoot: '/app',
-    }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'landing-page'),
-      serveRoot: '/',
-    }),
+    ServeStaticModule.forRoot(
+      {
+        rootPath: join(__dirname, '..', 'frontend'),
+        exclude: ['/api/(.*)'],
+        serveRoot: '/app',
+      },
+      {
+        rootPath: join(__dirname, '..', 'landing-page'),
+        exclude: ['/api/(.*)'],
+      }
+    ),
     AuthModule,
     UserModule,
     LessonModule,
