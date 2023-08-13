@@ -18,11 +18,12 @@ import { LessonModule } from '../api/lesson/lesson.module';
       {
         rootPath: join(__dirname, '..', 'frontend'),
         exclude: ['/api/(.*)'],
-        serveRoot: '/app',
+        renderPath: '/app/*',
       },
       {
         rootPath: join(__dirname, '..', 'landing-page'),
         exclude: ['/api/(.*)'],
+        renderPath: '/',
       }
     ),
     AuthModule,
