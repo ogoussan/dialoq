@@ -6,11 +6,13 @@ import {
   Progress,
   Text,
   Spinner,
+  CardHeader,
 } from '@chakra-ui/react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useLesson } from '../services/lesson.service';
 import { Task } from '@dialoq/types';
 import TaskContainer from '../components/Task/TaskContainer';
+import { BiChevronLeft } from 'react-icons/bi';
 
 export interface LessonState {
   status: 'ongoing' | 'completed' | 'empty';
@@ -19,6 +21,7 @@ export interface LessonState {
 
 const Lesson = (): ReactElement => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { data: lesson, isLoading } = useLesson(id, { select: 'tasks' });
 
   const [lessonState, setLessonState] = useState<LessonState>();
@@ -85,6 +88,20 @@ const Lesson = (): ReactElement => {
     );
   }
 
+  if (lessonState.status === 'completed') {
+    return (
+      <Card width="80%" p={8}>
+        <VStack>
+          <Text>
+            {/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
+            Lesson is completed <span role="img">✅</span>
+          </Text>
+          <Button onClick={() => navigate('/app')}>Back to home view</Button>
+        </VStack>
+      </Card>
+    );
+  }
+
   if (!lesson.tasks?.length) {
     return (
       <Card width="80%" p={8}>
@@ -95,6 +112,12 @@ const Lesson = (): ReactElement => {
 
   return (
     <Card width={['90%', '80%', '80%']} p={[6, 8, 8]}>
+      <CardHeader px={0}>
+        <Button px={0} variant="ghost" onClick={() => navigate('/app')}>
+          <BiChevronLeft />
+          {`Back to home`}
+        </Button>
+      </CardHeader>
       <Progress
         borderRadius={'md'}
         value={getCompletionPercentage(lesson.tasks)}

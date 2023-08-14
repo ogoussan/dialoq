@@ -73,7 +73,7 @@ const LessonOverlay = ({ isOpen, onClose, language }: Props): ReactElement => {
         </ModalContainer>
       </Show>
 
-      <Show below="md">
+      <Show breakpoint="sm">
         <DrawerContainer
           isOpen={isOpen}
           onClose={onClose}
@@ -85,7 +85,7 @@ const LessonOverlay = ({ isOpen, onClose, language }: Props): ReactElement => {
           {isLoading ? (
             <HStack>
               <Text>Generating new lesson. This may take a while...</Text>
-              <Progress size="xs" isIndeterminate />
+              <Progress size="md" isIndeterminate />
             </HStack>
           ) : (
             <LessonForm lessonData={lessonData} onChange={handleChange} />

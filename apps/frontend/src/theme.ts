@@ -9,7 +9,16 @@ const config: ThemeConfig = {
   initialColorMode: 'system',
 };
 
-const components: Record<string, StyleConfig> = {};
+const components: Record<string, StyleConfig> = {
+  Card: {
+    baseStyle: {
+      backgroundColor: 'gray.400',
+      _dark: {
+        backgroundColor: 'gray.800',
+      },
+    },
+  },
+};
 
 const styles = {
   global: () => ({

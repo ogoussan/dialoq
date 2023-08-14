@@ -22,7 +22,8 @@ export const selectPrompt = {
       data: [
         {
           vocabulary: string,
-          options: string // translation options separated by comma without whitespace like this: "option1,option2,option3"
+          options: string   /* translation options that contains correctAnswer separated by comma
+                            without whitespace like this: "apple,orange,banana". None of option should start with the letter of the option like this: "a. orange" */
           correctAnswer: string
         }
       ]

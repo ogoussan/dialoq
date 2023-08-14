@@ -34,6 +34,7 @@ export const clozePrompt = {
     Give me ${taskCount} ${language} sentences that contain multiple ${subtopic} around the theme ${theme}.
     Surround the ${subtopic} with square brackets and provide a translation for the sentences.
     Instead of having the ${subtopic} at the same position in every sentence, vary the position of the ${subtopic} for different sentences.
+    No sentence should have more than 2 ${subtopic}.
 
     ###
     This is an example output for sentences in the language german including possessive pronouns surrounded by square brackets around the theme travel:
@@ -50,7 +51,7 @@ export const clozePrompt = {
           sentence: string,
           translation: string,
           answer: string
-          /* content of all square brackets (without the brackets) in correct order and separated by comma. Example: sentence -> "[Mein] Computer steht auf ihren Tisch" answer -> Mein,ihren */
+          /* content of all square brackets (without the brackets) in correct order and separated by comma without white space. Example: sentence -> "[Mein] Computer steht auf ihren Tisch" answer -> Mein,ihren */
         }
         ...
       ]
