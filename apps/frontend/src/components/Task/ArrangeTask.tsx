@@ -44,11 +44,12 @@ const ArrangeTask = ({
     <VStack width="full">
       <TaskQuestionTranslation translation={translation} />
       <Flex
+        flexWrap="wrap"
         gap={2}
-        width="full"
-        minHeight={50}
-        backgroundColor="gray.100"
+        maxWidth="full"
+        backgroundColor="gray.200"
         _dark={{ backgroundColor: 'gray.900' }}
+        rounded="md"
         p={2}
       >
         {arrangedTokens.map((token, index) => (
@@ -62,9 +63,11 @@ const ArrangeTask = ({
         ))}
       </Flex>
       <Flex
+        flexWrap="wrap"
         gap={2}
-        backgroundColor="gray.100"
+        backgroundColor="gray.200"
         _dark={{ backgroundColor: 'gray.900' }}
+        rounded="md"
         p={4}
       >
         {unarrangedTokens.map((token, index) => (

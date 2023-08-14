@@ -5,6 +5,7 @@ import { Language, Lesson } from '@dialoq/types';
 import LessonsWidget from '../components/LessonsWidget';
 import { useLessons } from '../services/lesson.service';
 import LessonOverlay from '../components/LessonOverlay';
+import { ToUpperCase } from '@dialoq/utils';
 
 const HomePage = (): ReactElement => {
   const { data: lessons = [] } = useLessons();
@@ -33,7 +34,7 @@ const HomePage = (): ReactElement => {
           value={language}
           label="Select your language"
           onChange={(newLanguage) => setLanguage(newLanguage as Language)}
-          getOptionLabel={(option) => option}
+          getOptionLabel={(option) => ToUpperCase(option)}
         />
         <Button width="full" onClick={onOpen}>
           Add new Lesson

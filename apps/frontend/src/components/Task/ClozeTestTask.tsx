@@ -1,12 +1,7 @@
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import { Card, HStack, Input, Text, VStack } from '@chakra-ui/react';
-import TaskQuestionTranslation from './TaskQuestionTranslation';
+import { Card, HStack, Input, Text } from '@chakra-ui/react';
 
-interface Props {
-  question: string;
-  translation: string;
-  onInputValuesChange: (inputValues: string) => void;
-}
+import TaskQuestionTranslation from './TaskQuestionTranslation';
 
 const ClozeTestTask = ({
   question,
@@ -19,7 +14,7 @@ const ClozeTestTask = ({
     [question]
   );
   const tokens = useMemo(
-    () => question.replace(/\{.*?}/g, '').split(/\s+/),
+    () => question.replace(/\{.*?}/g, '').match(/\[.*?\]|[\w\p{L}]+/gu) || [],
     [question]
   );
   const [inputValues, setInputValues] = useState<string[]>(
@@ -45,32 +40,32 @@ const ClozeTestTask = ({
   };
 
   return (
-    <Card
-      backgroundColor="gray.300"
-      _dark={{
-        backgroundColor: 'gray.800',
-      }}
-      padding="4"
-      whiteSpace="pre-wrap"
-      width="100%"
-    >
-      <HStack wrap={'wrap'} alignItems="flex-start">
-        <TaskQuestionTranslation translation={translation} />
-        {tokens.map((token, index) => {
-          if (token.match(regex)) {
-            const inputIndex = tokens
-              .filter((token) => regex.test(token))
-              .findIndex((t) => t === token);
+    <HStack flexWrap="wrap" alignItems="flex-start" width="full">
+      <TaskQuestionTranslation translation={translation} />
+      <Card
+        backgroundColor="gray.300"
+        _dark={{
+          backgroundColor: 'gray.800',
+        }}
+        padding="4"
+        whiteSpace="pre-wrap"
+        width="full"
+      >
+        <HStack flexWrap="wrap" gap="6px">
+          {tokens.map((token, index) => {
+            if (token.match(regex)) {
+              const inputIndex = tokens
+                .filter((token) => regex.test(token))
+                .findIndex((t) => t === token);
 
-            return (
-              <VStack key={token}>
+              return (
                 <Input
                   isRequired
                   key={index}
                   type="text"
                   value={inputValues[inputIndex] || ''}
                   variant="filled"
-                  bg="gray.400"
+                  bg="gray.100"
                   fontWeight="bold"
                   fontSize="18px"
                   _dark={{
@@ -83,29 +78,38 @@ const ClozeTestTask = ({
                   size="sm"
                   borderRadius="4px"
                   width={`${
-                    Math.max(token.length, inputValues[inputIndex]?.length) * 18
+                    Math.max(
+                      token.length,
+                      inputValues[inputIndex]?.length,
+                      descriptionTokens[inputIndex] ? 100 : 0
+                    ) * 12
                   }px`} // Roughly set the width based on the word's length
                   lineHeight="normal"
-                />
-                <Text as="small" color="gray.200">
-                  {descriptionTokens[inputIndex] &&
+                  _placeholder={{
+                    fontSize: '10px',
+                  }}
+                  placeholder={
+                    descriptionTokens[inputIndex] &&
                     descriptionTokens[inputIndex]
                       .replace('{', '')
-                      .replace('}', '')}
-                </Text>
-              </VStack>
-            );
-          } else {
-            return (
-              <Text fontSize={22} key={index}>
-                {token}
-              </Text>
-            );
-          }
-        })}
-      </HStack>
-    </Card>
+                      .replace('}', '')
+                  }
+                />
+              );
+            } else {
+              return <Text key={index}>{token}</Text>;
+            }
+          })}
+        </HStack>
+      </Card>
+    </HStack>
   );
 };
+
+interface Props {
+  question: string;
+  translation: string;
+  onInputValuesChange: (inputValues: string) => void;
+}
 
 export default ClozeTestTask;

@@ -1,9 +1,10 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import TaskDescription from './TaskDescription';
-import { Button, Card, HStack, Text } from '@chakra-ui/react';
+import { Button, HStack, useToast } from '@chakra-ui/react';
 import { Task, Subtopic } from '@dialoq/types';
 import { useUpdateTask } from '../../services/task.service';
 import TaskRenderer from './TaskRenderer';
+import { env } from '../../env';
 
 interface TaskProps {
   task: Task;
@@ -21,6 +22,8 @@ const TaskContainer = ({ task, subtopic }: TaskProps): ReactElement => {
   const [taskState, setTaskState] = useState<TaskState>(initialTaskState);
   const { mutate: updateTask } = useUpdateTask(task.id);
 
+  const toast = useToast();
+
   useEffect(() => {
     setTaskState({
       type: 'UNANSWERED',
@@ -35,12 +38,21 @@ const TaskContainer = ({ task, subtopic }: TaskProps): ReactElement => {
     });
   }, []);
 
+  const getFormattedAnswer = (answer: string): string =>
+    answer
+      .split(',')
+      .map((token) => token.trim())
+      .join();
+
   const answerTask = (): void => {
     if (!task) {
       return;
     }
 
-    if (taskState.answer.trim() === task.answer.trim()) {
+    if (
+      getFormattedAnswer(taskState.answer.trim()) ===
+      getFormattedAnswer(task.answer.trim())
+    ) {
       setTaskState((prevState) => ({
         type: 'CORRECT',
         answer: prevState.answer,
@@ -53,12 +65,32 @@ const TaskContainer = ({ task, subtopic }: TaskProps): ReactElement => {
     }
   };
 
+  useEffect(() => {
+    if (taskState.type === 'CORRECT') {
+      toast({
+        title: 'Correct answer',
+        status: 'success',
+        duration: 4000,
+        isClosable: true,
+      });
+    } else if (taskState.type === 'INCORRECT') {
+      toast({
+        title: 'Wrong answer',
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+      });
+    }
+  }, [taskState, toast]);
+
   const handleContinue = (): void => {
     updateTask({ ...task, isCompleted: taskState.type === 'CORRECT' });
+    setTaskState(initialTaskState);
   };
 
   return (
     <>
+      {env.NODE_ENV === 'development' && task.answer}
       <TaskDescription taskType={task.type} lessonSubtopic={subtopic} />
       <TaskRenderer task={task} onChange={handleInputValuesChange} />
       {taskState.type === 'UNANSWERED' && (
@@ -69,42 +101,14 @@ const TaskContainer = ({ task, subtopic }: TaskProps): ReactElement => {
         </HStack>
       )}
       {taskState.type === 'CORRECT' && (
-        <HStack width="100%" justifyContent="space-between">
-          <Card
-            display="flex"
-            flex={1}
-            p={4}
-            bg="primary.600"
-            height="70px"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Text as="b">Correct answer</Text>
-          </Card>
-          <Button height="70px" onClick={() => handleContinue()}>
-            Continue
-          </Button>
-        </HStack>
+        <Button width="full" height="70px" onClick={() => handleContinue()}>
+          Continue
+        </Button>
       )}
       {taskState.type === 'INCORRECT' && (
-        <HStack width="100%" justifyContent="space-between">
-          <Card
-            display="flex"
-            flex={1}
-            p={4}
-            bg="red.300"
-            height="70px"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Text as="b" _dark={{ color: 'black' }}>
-              Wrong answer
-            </Text>
-          </Card>
-          <Button height="70px" onClick={() => handleContinue()}>
-            Continue
-          </Button>
-        </HStack>
+        <Button width="full" height="70px" onClick={() => handleContinue()}>
+          Skip
+        </Button>
       )}
     </>
   );

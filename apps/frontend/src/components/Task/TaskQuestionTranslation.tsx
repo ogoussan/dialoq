@@ -22,24 +22,21 @@ const TaskQuestionTranslation = ({
       }}
       width="100%"
     >
-      <HStack>
-        <Text as="b">Translation:</Text>
-        <Text>
-          {tokens.map((token, index) => (
-            <React.Fragment key={index}>
-              {regex.test(token) ? (
-                <Text
-                  as="span"
-                  textDecor={highlightModelAnswer ? 'underline' : ''}
-                >
-                  {token.replace('[', ' ').replace(']', ' ')}
-                </Text>
-              ) : (
-                ` ${token}`
-              )}
-            </React.Fragment>
-          ))}
-        </Text>
+      <HStack flexWrap="wrap">
+        {tokens.map((token, index) => (
+          <React.Fragment key={index}>
+            {regex.test(token) ? (
+              <Text
+                as="span"
+                textDecor={highlightModelAnswer ? 'underline' : ''}
+              >
+                {token.replace('[', ' ').replace(']', ' ')}
+              </Text>
+            ) : (
+              <Text>{` ${token}`}</Text>
+            )}
+          </React.Fragment>
+        ))}
       </HStack>
     </Card>
   );
