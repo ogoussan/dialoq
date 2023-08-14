@@ -8,7 +8,7 @@ import LessonOverlay from '../components/LessonOverlay';
 import { ToUpperCase } from '@dialoq/utils';
 
 const HomePage = (): ReactElement => {
-  const { data: lessons = [], isLoading } = useLessons();
+  const { data: lessons = [], isLoading } = useLessons({ select: 'tasks' });
   const [language, setLanguage] = useState(Language.German);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
