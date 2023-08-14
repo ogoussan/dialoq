@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { Card, Flex, VStack } from '@chakra-ui/react';
 
 interface Props {
@@ -13,6 +13,11 @@ const SelectTask = ({
   onInputValuesChange,
 }: Props): ReactElement => {
   const [selectedOption, setSelectedOption] = useState<string>();
+
+  // reset when question changes
+  useEffect(() => {
+    setSelectedOption(undefined);
+  }, [question]);
 
   const handleClick = (option: string): void => {
     onInputValuesChange(option);

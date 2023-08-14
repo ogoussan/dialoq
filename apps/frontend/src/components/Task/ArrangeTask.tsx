@@ -18,6 +18,12 @@ const ArrangeTask = ({
   const [arrangedTokens, setArrangedTokens] = useState<string[]>([]);
   const [unarrangedTokens, setUnarrangedTokens] = useState<string[]>(tokens);
 
+  // reset when question changes
+  useEffect(() => {
+    setArrangedTokens([]);
+    setUnarrangedTokens(tokens);
+  }, [question, tokens]);
+
   useEffect(() => {
     shuffleArray(tokens);
   }, [tokens]);

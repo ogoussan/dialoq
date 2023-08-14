@@ -22,6 +22,11 @@ const ClozeTestTask = ({
     tokens.filter((token) => regex.test(token)).map(() => '')
   );
 
+  // reset when question changes
+  useEffect(() => {
+    setInputValues(tokens.filter((token) => regex.test(token)).map(() => ''));
+  }, [question, regex, tokens]);
+
   useEffect(() => {
     setInputValues(tokens.filter((token) => regex.test(token)).map(() => ''));
   }, [regex, tokens]);
