@@ -1,14 +1,21 @@
 import { ReactElement } from 'react';
-import { VStack, Text, Grid, useBreakpointValue } from '@chakra-ui/react';
+import {
+  VStack,
+  Text,
+  Grid,
+  useBreakpointValue,
+  Spinner,
+} from '@chakra-ui/react';
 import LessonCard from './LessonCard';
 import { Lesson } from '@dialoq/types';
 
 interface Props {
   title: string;
   lessons: Lesson[];
+  isLoading?: boolean;
 }
 
-const LessonsWidget = ({ title, lessons }: Props): ReactElement => {
+const LessonsWidget = ({ title, lessons, isLoading }: Props): ReactElement => {
   const gridTemplateColumns = useBreakpointValue({
     base: 'repeat(1, 1fr)',
     sm: 'repeat(1, 1fr)',
@@ -16,6 +23,10 @@ const LessonsWidget = ({ title, lessons }: Props): ReactElement => {
     lg: 'repeat(4, 1fr)',
     xl: 'repeat(5, 1fr)',
   });
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <VStack width="full" overflowX="scroll" alignItems="flex-start">
@@ -26,7 +37,14 @@ const LessonsWidget = ({ title, lessons }: Props): ReactElement => {
             <LessonCard key={lesson.id} lesson={lesson} />
           ))
         ) : (
-          <Text>No lessons yet</Text>
+          <Text
+            fontSize={14}
+            _light={{
+              color: 'gray.600',
+            }}
+          >
+            No lessons yet
+          </Text>
         )}
       </Grid>
     </VStack>

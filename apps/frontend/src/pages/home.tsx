@@ -8,7 +8,7 @@ import LessonOverlay from '../components/LessonOverlay';
 import { ToUpperCase } from '@dialoq/utils';
 
 const HomePage = (): ReactElement => {
-  const { data: lessons = [] } = useLessons();
+  const { data: lessons = [], isLoading } = useLessons();
   const [language, setLanguage] = useState(Language.German);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -42,6 +42,7 @@ const HomePage = (): ReactElement => {
         <LessonsWidget
           title="Your Lessons"
           lessons={lessonsForCurrentLanguage}
+          isLoading={isLoading}
         />
       </VStack>
       <LessonOverlay isOpen={isOpen} onClose={onClose} language={language} />
