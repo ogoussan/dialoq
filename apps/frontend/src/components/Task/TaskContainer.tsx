@@ -106,7 +106,12 @@ const TaskContainer = ({ task, subtopic }: TaskProps): ReactElement => {
         </Button>
       )}
       {taskState.type === 'INCORRECT' && (
-        <Button width="full" height="70px" onClick={() => handleContinue()}>
+        <Button
+          colorScheme="gray"
+          width="full"
+          height="70px"
+          onClick={() => handleContinue()}
+        >
           Skip
         </Button>
       )}

@@ -73,7 +73,7 @@ const LessonOverlay = ({ isOpen, onClose, language }: Props): ReactElement => {
         </ModalContainer>
       </Show>
 
-      <Show breakpoint="sm">
+      <Show below="md">
         <DrawerContainer
           isOpen={isOpen}
           onClose={onClose}

@@ -17,6 +17,7 @@ const ClozeTestTask = ({
     () => question.replace(/\{.*?}/g, '').match(/\[.*?\]|[\w\p{L}]+/gu) || [],
     [question]
   );
+
   const [inputValues, setInputValues] = useState<string[]>(
     tokens.filter((token) => regex.test(token)).map(() => '')
   );
