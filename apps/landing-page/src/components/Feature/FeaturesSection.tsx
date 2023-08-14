@@ -33,23 +33,25 @@ const FeaturesSection = (): JSX.Element => {
   ];
 
   return (
-    <>
-      <Heading size={'xl'}>Features</Heading>
-      <VStack
-        width={'100%'}
-        paddingY={[16, 24, 24]}
-        backgroundColor={'primary.200'}
-        alignItems={'center'}
+    <VStack
+      width={'100%'}
+      backgroundColor={'primary.200'}
+      alignItems={'center'}
+      justifyContent={'center'}
+    >
+      <Heading paddingTop={[4, 6, 8]} size={'xl'}>
+        Features
+      </Heading>
+
+      <SimpleGrid
+        paddingY={[16, 16, 24]}
+        width={['70%', '70%', '50%']}
+        columns={[1, 1, 2]}
+        gap={[24, 24, 32]}
       >
-        <SimpleGrid
-          width={['70%', '50%', '50%']}
-          columns={[1, 2, 2]}
-          gap={[24, 32, 32]}
-        >
-          {featureDescriptions.map((element) => element)}
-        </SimpleGrid>
-      </VStack>
-    </>
+        {featureDescriptions.map((element) => element)}
+      </SimpleGrid>
+    </VStack>
   );
 };
 

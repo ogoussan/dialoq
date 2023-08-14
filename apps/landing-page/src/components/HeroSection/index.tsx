@@ -1,44 +1,36 @@
 import React from 'react';
-import {
-  Box,
-  Button,
-  Heading,
-  Hide,
-  HStack,
-  Tag,
-  Text,
-  VStack,
-} from '@chakra-ui/react';
+import { Button, Heading, Stack, Tag, Text, VStack } from '@chakra-ui/react';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import DialoqMockup from '../DialoqMockup';
 import { env } from '../../env';
 
 const Index = (): JSX.Element => {
   return (
-    <HStack
+    <Stack
+      direction={['column', 'column', 'row']}
       height={'70vh'}
       alignItems={'start'}
-      marginTop={[12, 32, 32]}
-      maxWidth={['80%', '60%', '60%']}
+      marginTop={[12, 12, 32]}
+      maxWidth={['80%', '80%', '70%']}
       gap={4}
     >
-      <VStack gap={[6, 10, 10]} alignItems={'baseline'}>
-        <VStack gap={[2, 4, 4]} alignItems={'baseline'}>
+      <VStack gap={[6, 8, 10]} alignItems={'baseline'}>
+        <VStack gap={[2, 2, 4]} alignItems={'baseline'}>
           <Tag
             borderRadius={16}
-            paddingX={[2, 8, 8]}
-            size={['sm', 'lg', 'lg']}
+            paddingX={[2, 4, 8]}
+            size={['sm', 'md', 'lg']}
             variant={'subtle'}
             colorScheme={'green'}
           >
             OUR BETA APP JUST RELEASED
           </Tag>
-          <Heading fontWeight={'semibold'} size={['xl', '3xl', '3xl']}>
+          <Heading fontWeight={'semibold'} size={['xl', '2xl', '3xl']}>
             Master any language with the support of AI
           </Heading>
         </VStack>
         <Text
-          maxWidth={['100%', '60%', '60%']}
+          maxWidth={['100%', '80%', '70%']}
           fontWeight={'normal'}
           fontSize={['md', 'lg', 'xl']}
         >
@@ -46,17 +38,20 @@ const Index = (): JSX.Element => {
           support for your individual way of studying.
         </Text>
         <a href={`${env.APP_URL}/app`}>
-          <Button size={['md', 'lg', 'lg']} rightIcon={<AiOutlineArrowRight />}>
+          <Button size={['md', 'md', 'lg']} rightIcon={<AiOutlineArrowRight />}>
             Get Started
           </Button>
         </a>
       </VStack>
-      <Hide below={'md'}>
-        <Box>
-          <DialoqMockup />
-        </Box>
-      </Hide>
-    </HStack>
+      <Stack
+        height={'100%'}
+        width={'100%'}
+        justifyContent={['center', 'start', 'start']}
+        alignItems={['center', 'center', 'center']}
+      >
+        <DialoqMockup width={['125px', '150px', '250px']} />
+      </Stack>
+    </Stack>
   );
 };
 
