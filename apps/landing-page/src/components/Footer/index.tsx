@@ -23,7 +23,7 @@ const Index = (): JSX.Element => {
         <ChakraLink as={ReactRouterLink} to="/imprint">
           Imprint
         </ChakraLink>
-        <ChakraLink as={ReactRouterLink} to="/imprint">
+        <ChakraLink as={ReactRouterLink} to="/policies">
           Policies
         </ChakraLink>
       </HStack>
