@@ -23,8 +23,10 @@ const LessonForm = ({ lessonData, onChange }: Props): ReactElement => {
   const [onlyVocabulary, setOnlyVocabulary] = useState(false);
 
   useEffect(() => {
-    onChange('topic', 'themeSpecificWords');
-    onChange('subtopic', 'themeSpecificWords');
+    if (onlyVocabulary) {
+      onChange('topic', 'themeSpecificWords');
+      onChange('subtopic', 'themeSpecificWords');
+    }
   }, [onChange, onlyVocabulary]);
 
   return (
