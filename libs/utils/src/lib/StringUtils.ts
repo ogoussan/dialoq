@@ -1,9 +1,16 @@
-export const ToUpperCase = (text: string): string => {
+export const toUpperCase = (text: string): string => {
   return text.charAt(0).toUpperCase() + text.slice(1);
 };
 
-export const CamelCaseToTitleCase = (text: string): string => {
+export const camelCaseToTitleCase = (
+  text: string,
+  capitalize = false
+): string => {
   const result = text.replace(/([A-Z])/g, ' $1');
 
-  return ToUpperCase(result);
+  if (!capitalize) {
+    return result;
+  }
+
+  return toUpperCase(result);
 };

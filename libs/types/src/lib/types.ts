@@ -1,6 +1,9 @@
 import { Profile } from 'passport-google-oauth20';
-import { FrenchTopic, GermanTopic, TaskType } from './enums';
 import { Task } from './interfaces';
+import { GermanArticle, GermanPronoun, GermanTense } from './german.enum';
+import { FrenchArticle, FrenchPronoun, FrenchTense } from './french.enum';
+import { SpanishArticle, SpanishPronoun, SpanishTense } from './spanish.enum';
+import { TaskType } from './enums';
 
 export type GoogleUser = Profile['_json'] & {
   accessToken: string;
@@ -31,7 +34,18 @@ export class Prompt<T> {
   }
 }
 
-export type Subtopic = GermanTopic | FrenchTopic;
+export type Subtopic =
+  | GermanArticle
+  | GermanPronoun
+  | GermanTense
+  | FrenchArticle
+  | FrenchPronoun
+  | FrenchTense
+  | SpanishArticle
+  | SpanishPronoun
+  | SpanishTense;
+
+export type ThemeSpecificWords = 'themeSpecificWords';
 
 export type TaskAllocation = { [key in TaskType]?: number };
 export type LessonConfigType = { [key in 'default']: TaskAllocation } & {

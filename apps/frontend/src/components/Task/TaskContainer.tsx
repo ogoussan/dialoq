@@ -68,6 +68,7 @@ const TaskContainer = ({ task, subtopic }: TaskProps): ReactElement => {
   useEffect(() => {
     if (taskState.type === 'CORRECT') {
       toast({
+        position: 'top',
         title: 'Correct answer',
         status: 'success',
         duration: 4000,
@@ -75,6 +76,7 @@ const TaskContainer = ({ task, subtopic }: TaskProps): ReactElement => {
       });
     } else if (taskState.type === 'INCORRECT') {
       toast({
+        position: 'top',
         title: 'Wrong answer',
         status: 'error',
         duration: 4000,
@@ -106,7 +108,12 @@ const TaskContainer = ({ task, subtopic }: TaskProps): ReactElement => {
         </Button>
       )}
       {taskState.type === 'INCORRECT' && (
-        <Button width="full" height="70px" onClick={() => handleContinue()}>
+        <Button
+          colorScheme="gray"
+          width="full"
+          height="70px"
+          onClick={() => handleContinue()}
+        >
           Skip
         </Button>
       )}

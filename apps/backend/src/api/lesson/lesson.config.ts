@@ -23,8 +23,8 @@ const LessonConfig: Pick<LessonConfigType, 'default'> = {
   },
   ['compositePastTense' as Subtopic]: {
     [TaskType.Cloze]: 5,
-    [TaskType.Select]: 5,
-    [TaskType.Arrange]: 5,
+    [TaskType.Select]: 0,
+    [TaskType.Arrange]: 0,
   },
 };
 

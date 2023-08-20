@@ -17,9 +17,15 @@ const ClozeTestTask = ({
     () => question.replace(/\{.*?}/g, '').match(/\[.*?\]|[\w\p{L}]+/gu) || [],
     [question]
   );
+
   const [inputValues, setInputValues] = useState<string[]>(
     tokens.filter((token) => regex.test(token)).map(() => '')
   );
+
+  // reset when question changes
+  useEffect(() => {
+    setInputValues(tokens.filter((token) => regex.test(token)).map(() => ''));
+  }, [question, regex, tokens]);
 
   useEffect(() => {
     setInputValues(tokens.filter((token) => regex.test(token)).map(() => ''));
@@ -69,7 +75,7 @@ const ClozeTestTask = ({
                   fontWeight="bold"
                   fontSize="18px"
                   _dark={{
-                    backgroundColor: 'gray.600',
+                    backgroundColor: 'gray.700',
                   }}
                   _hover={{
                     filter: 'brightness(0.8)',
@@ -81,12 +87,15 @@ const ClozeTestTask = ({
                     Math.max(
                       token.length,
                       inputValues[inputIndex]?.length,
-                      descriptionTokens[inputIndex] ? 100 : 0
+                      descriptionTokens[inputIndex]?.length ?? 0
                     ) * 12
                   }px`} // Roughly set the width based on the word's length
                   lineHeight="normal"
                   _placeholder={{
-                    fontSize: '10px',
+                    fontSize: '12px',
+                    _dark: {
+                      color: 'white',
+                    },
                   }}
                   placeholder={
                     descriptionTokens[inputIndex] &&

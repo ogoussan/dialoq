@@ -16,7 +16,7 @@ const TaskQuestionTranslation = ({
   return (
     <Card
       padding="4"
-      backgroundColor="gray.300"
+      backgroundColor="gray.200"
       _dark={{
         backgroundColor: 'gray.800',
       }}

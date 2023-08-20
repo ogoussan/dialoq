@@ -16,7 +16,7 @@ import {
 import React, { ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LessonCardMenu } from './LessonCardMenu';
-import { CamelCaseToTitleCase } from '@dialoq/utils';
+import { camelCaseToTitleCase } from '@dialoq/utils';
 
 const LessonCard = ({ lesson }: { lesson: Lesson }): ReactElement => {
   const navigate = useNavigate();
@@ -52,27 +52,29 @@ const LessonCard = ({ lesson }: { lesson: Lesson }): ReactElement => {
       </CardHeader>
       <CardBody>
         <VStack alignItems="flex-start" gap={4}>
-          <Progress
-            borderRadius={'md'}
-            value={getCompletedPercentage()}
-            isAnimated={true}
-            sx={{
-              '& > div:first-child': {
-                transitionProperty: 'width',
-              },
-            }}
-          />
+          <Box width="full">
+            <Progress
+              borderRadius={'md'}
+              value={getCompletedPercentage()}
+              isAnimated={true}
+              sx={{
+                '& > div:first-child': {
+                  transitionProperty: 'width',
+                },
+              }}
+            />
+          </Box>
           <Box>
             <Text>Theme: </Text>
             <Badge>{lesson.theme}</Badge>
           </Box>
           <Box>
             <Text>Grammar concept: </Text>
-            <Badge>{CamelCaseToTitleCase(lesson.subtopic)}</Badge>
+            <Badge>{camelCaseToTitleCase(lesson.subtopic)}</Badge>
           </Box>
         </VStack>
       </CardBody>
-      <CardFooter>
+      <CardFooter justifyContent="flex-end">
         <Button onClick={() => navigate(`/app/lesson/${lesson.id}`)}>
           Go to Lesson
         </Button>

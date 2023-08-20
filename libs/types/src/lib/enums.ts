@@ -12,22 +12,11 @@ export enum TaskType {
 export enum Language {
   German = 'german',
   French = 'french',
+  Spanish = 'spanish',
 }
 
-export enum GermanSuperTopics {
-  Pronouns = 'pronouns',
-  Articles = 'articles',
-  tenses = 'tenses',
-}
-
-export enum GermanTopic {
-  Articles = 'articles',
-  PossessivePronouns = 'possessivePronouns',
-  PresentTenseVerbs = 'presentTenseVerbs',
-}
-
-export enum FrenchTopic {
-  Articles = 'articles',
-  PresentTenseVerbs = 'presentTenseVerbs',
-  CompositePastTense = 'compositePastTense',
+export enum Topic {
+  Article = 'article',
+  Pronoun = 'pronoun',
+  Tense = 'tense',
 }

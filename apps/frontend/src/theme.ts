@@ -9,31 +9,10 @@ const config: ThemeConfig = {
   initialColorMode: 'system',
 };
 
-const components: Record<string, StyleConfig> = {
-  Card: {
-    baseStyle: {
-      backgroundColor: 'gray.400',
-      _dark: {
-        backgroundColor: 'gray.800',
-      },
-    },
-  },
-};
-
-const styles = {
-  global: () => ({
-    // Fix missing modal footer on iOS 15.
-    '.chakra-modal__content': {
-      '@supports(height: -webkit-fill-available)': {
-        minHeight: '-webkit-fill-available !important',
-      },
-    },
-  }),
-};
+const components: Record<string, StyleConfig> = {};
 
 const theme = extendTheme(
   {
-    styles,
     config,
     components,
     colors: {
