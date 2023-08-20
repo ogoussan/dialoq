@@ -19,9 +19,14 @@ const Index = (): JSX.Element => {
         <Icon boxSize={4} as={AiOutlineCopyrightCircle} />{' '}
         <Text>naitelabs</Text>
       </HStack>
-      <ChakraLink as={ReactRouterLink} to="/imprint">
-        Imprint
-      </ChakraLink>
+      <HStack gap={4}>
+        <ChakraLink as={ReactRouterLink} to="/imprint">
+          Imprint
+        </ChakraLink>
+        <ChakraLink as={ReactRouterLink} to="/imprint">
+          Policies
+        </ChakraLink>
+      </HStack>
     </VStack>
   );
 };
