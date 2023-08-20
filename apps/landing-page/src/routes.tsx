@@ -1,5 +1,6 @@
 import LandingPage from './pages/landing-page';
 import Imprint from './pages/imprint';
+import Policies from './pages/policies';
 
 interface PageRoute {
   path: `/${string}`;
@@ -17,6 +18,11 @@ export const navigationRoutes: PageRoute[] = [
     component: <Imprint />,
     label: 'Imprint',
     path: '/imprint',
+  },
+  {
+    component: <Policies />,
+    label: 'Policies',
+    path: '/policies',
   },
 ];
 
