@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { MigrationInterface, QueryRunner } = require('typeorm');
 
-module.exports = class InitialMigration1691851206793 {
-  name = 'InitialMigration1691851206793';
+module.exports = class InitialMigration1692563513547 {
+  name = 'InitialMigration1692563513547';
 
   async up(queryRunner) {
     await queryRunner.query(
