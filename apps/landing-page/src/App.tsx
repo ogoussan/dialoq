@@ -2,7 +2,8 @@ import { Box, VStack } from '@chakra-ui/react';
 import { Route, Routes } from 'react-router-dom';
 import NotFoundPage from './pages/notfound';
 import { routes } from './routes';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
+import Navbar from './components/Navbar/Navbar';
 
 const App = (): ReactElement => {
   return (
@@ -12,7 +13,8 @@ const App = (): ReactElement => {
       _dark={{ backgroundColor: 'gray.900' }}
       paddingBottom={8}
     >
-      <VStack gap={8} width="100vw">
+      <VStack width="100vw">
+        <Navbar />
         <Routes>
           {routes.map(({ path, component }) => (
             <Route path={path} element={component} key={`route-${path}`} />
