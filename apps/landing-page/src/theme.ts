@@ -7,6 +7,7 @@ import {
 
 const config: ThemeConfig = {
   initialColorMode: 'light',
+  useSystemColorMode: false,
 };
 
 const components: Record<string, StyleConfig> = {};
