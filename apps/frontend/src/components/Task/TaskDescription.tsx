@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { TaskType, Subtopic } from '@dialoq/types';
 import { Box, Heading } from '@chakra-ui/react';
-import { CamelCaseToTitleCase } from '@dialoq/utils';
+import { camelCaseToTitleCase } from '@dialoq/utils';
 
 interface TaskDescriptionProps {
   taskType: TaskType;
@@ -13,7 +13,7 @@ const TaskDescription = ({
   lessonSubtopic,
 }: TaskDescriptionProps): ReactElement => {
   const descriptionMap = {
-    [TaskType.Cloze]: `Please fill in the gaps with the correct ${CamelCaseToTitleCase(
+    [TaskType.Cloze]: `Please fill in the gaps with the correct ${camelCaseToTitleCase(
       lessonSubtopic
     )}.`,
     [TaskType.Select]: `Select the correct meaning of this word`,

@@ -75,6 +75,11 @@ export class LessonService {
 
     for (let i = 0; i < allocationEntries.length; i++) {
       const [taskType, taskCount] = allocationEntries[i];
+
+      if (!taskCount) {
+        continue;
+      }
+
       const prompt = new Prompt(promptMap[taskType], lesson, taskCount);
       const responseTasks = await this.openAiService.createChatCompletion(
         prompt,

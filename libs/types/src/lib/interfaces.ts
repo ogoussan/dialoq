@@ -1,5 +1,5 @@
-import { Language, Role, TaskType } from './enums';
-import { Subtopic } from './types';
+import { Language, Role, TaskType, Topic } from './enums';
+import { Subtopic, ThemeSpecificWords } from './types';
 
 export interface ResponseError {
   statusCode: number;
@@ -31,6 +31,7 @@ export interface Lesson extends Document {
   userId: string;
   language: Language;
   theme: string;
+  topic: Topic | ThemeSpecificWords;
   subtopic: Subtopic;
   tasks?: Task[];
 }

@@ -1,7 +1,7 @@
 import { Lesson, PromptTemplate, TaskType } from '@dialoq/types';
-import { clozePrompt } from './cloze.prompt';
-import { selectPrompt } from './select.prompt';
-import { arrangePrompt } from './arrange.prompt';
+import { clozePrompt } from './cloze/cloze.prompt';
+import { selectPrompt } from './select/select.prompt';
+import { arrangePrompt } from './arrange/arrange.prompt';
 
 export const promptMap: { [key in TaskType]: PromptTemplate<Lesson> } = {
   [TaskType.Cloze]: clozePrompt,

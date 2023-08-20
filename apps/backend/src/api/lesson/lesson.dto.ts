@@ -1,12 +1,14 @@
 import { ApiProperty, ApiPropertyOptional, PartialType } from '@nestjs/swagger';
 import {
-  GermanTopic,
   Language,
   Lesson,
   Task,
   TaskType,
   Subtopic,
   User,
+  GermanArticle,
+  Topic,
+  ThemeSpecificWords,
 } from '@dialoq/types';
 import { IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 import { DocumentDto } from '../../database/document.dto';
@@ -32,7 +34,13 @@ export class LessonDto extends DocumentDto implements Lesson {
 
   @IsString()
   @ApiProperty({
-    example: GermanTopic.Articles,
+    example: GermanArticle,
+  })
+  public topic: Topic | ThemeSpecificWords;
+
+  @IsString()
+  @ApiProperty({
+    example: GermanArticle.DefiniteArticle,
   })
   public subtopic: Subtopic;
 

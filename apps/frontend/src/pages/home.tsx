@@ -5,11 +5,13 @@ import { Language, Lesson } from '@dialoq/types';
 import LessonsWidget from '../components/LessonsWidget';
 import { useLessons } from '../services/lesson.service';
 import LessonOverlay from '../components/LessonOverlay';
-import { ToUpperCase } from '@dialoq/utils';
+import { toUpperCase } from '@dialoq/utils';
 
 const HomePage = (): ReactElement => {
   const { data: lessons = [], isLoading } = useLessons({ select: 'tasks' });
-  const [language, setLanguage] = useState(Language.German);
+  const [language, setLanguage] = useState(
+    (localStorage.getItem('lastLang') as Language) || Language.German
+  );
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [lessonsForCurrentLanguage, setLessonsForCurrentLanguage] = useState<
@@ -26,6 +28,10 @@ const HomePage = (): ReactElement => {
     setLessonsForCurrentLanguage(sortedLessons);
   }, [language, lessons]);
 
+  useEffect(() => {
+    localStorage.setItem('lastLang', language);
+  }, [language]);
+
   return (
     <Card width={['90%', '80%', '80%']} p={[6, 8, 8]}>
       <VStack rowGap="32px">
@@ -34,7 +40,7 @@ const HomePage = (): ReactElement => {
           value={language}
           label="Select your language"
           onChange={(newLanguage) => setLanguage(newLanguage as Language)}
-          getOptionLabel={(option) => ToUpperCase(option)}
+          getOptionLabel={(option) => toUpperCase(option)}
         />
         <Button width="full" onClick={onOpen}>
           Add new Lesson

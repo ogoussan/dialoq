@@ -17,9 +17,10 @@ const SelectInput = <T,>({
   label,
   onChange,
   getOptionLabel,
+  isRequired,
 }: Props<T>): ReactElement => {
   return (
-    <FormControl>
+    <FormControl isRequired={isRequired}>
       <FormLabel>{label}</FormLabel>
       <Select value={value || ''} onChange={(e) => onChange(e.target.value)}>
         <option value="" />

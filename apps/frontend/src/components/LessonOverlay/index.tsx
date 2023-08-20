@@ -23,6 +23,10 @@ const LessonOverlay = ({ isOpen, onClose, language }: Props): ReactElement => {
   const { mutate: addLesson, isLoading } = useAddLesson();
 
   useEffect(() => {
+    setLessonData((prevState) => ({ ...prevState, language }));
+  }, [language]);
+
+  useEffect(() => {
     if (user?.id) {
       setLessonData((prevState) => ({ ...prevState, userId: user.id }));
     }

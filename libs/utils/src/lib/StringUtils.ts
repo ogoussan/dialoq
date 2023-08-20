@@ -1,8 +1,8 @@
-export const ToUpperCase = (text: string): string => {
+export const toUpperCase = (text: string): string => {
   return text.charAt(0).toUpperCase() + text.slice(1);
 };
 
-export const CamelCaseToTitleCase = (
+export const camelCaseToTitleCase = (
   text: string,
   capitalize = false
 ): string => {
@@ -12,5 +12,5 @@ export const CamelCaseToTitleCase = (
     return result;
   }
 
-  return ToUpperCase(result);
+  return toUpperCase(result);
 };

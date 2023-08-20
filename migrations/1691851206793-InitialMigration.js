@@ -18,7 +18,7 @@ module.exports = class InitialMigration1691851206793 {
       `CREATE TABLE "task" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "answer" character varying NOT NULL, "question" character varying NOT NULL, "translation" character varying NOT NULL, "type" "public"."task_type_enum" NOT NULL, "options" character varying, "isCompleted" boolean, "lessonId" uuid NOT NULL, CONSTRAINT "PK_fb213f79ee45060ba925ecd576e" PRIMARY KEY ("id"))`
     );
     await queryRunner.query(
-      `CREATE TYPE "public"."lesson_language_enum" AS ENUM('german', 'french')`
+      `CREATE TYPE "public"."lesson_language_enum" AS ENUM('german', 'french', 'spanish')`
     );
     await queryRunner.query(
       `CREATE TABLE "lesson" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), "name" character varying NOT NULL, "userId" uuid NOT NULL, "language" "public"."lesson_language_enum" NOT NULL, "theme" character varying NOT NULL, "subtopic" character varying NOT NULL, CONSTRAINT "PK_0ef25918f0237e68696dee455bd" PRIMARY KEY ("id"))`

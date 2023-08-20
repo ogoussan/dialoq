@@ -1,4 +1,12 @@
-import { Language, Lesson, Task, Subtopic, User } from '@dialoq/types';
+import {
+  Language,
+  Lesson,
+  Task,
+  Subtopic,
+  User,
+  Topic,
+  ThemeSpecificWords,
+} from '@dialoq/types';
 import { Column, Entity, OneToMany } from 'typeorm';
 import { DocumentEntity } from '../../database/document.entity';
 import { TaskEntity } from '../task/task.entity';
@@ -19,6 +27,11 @@ export class LessonEntity extends DocumentEntity implements Lesson {
 
   @Column()
   public theme: string;
+
+  @Column({
+    type: 'varchar',
+  })
+  public topic: Topic | ThemeSpecificWords;
 
   @Column({
     type: 'varchar',

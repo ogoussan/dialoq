@@ -16,7 +16,7 @@ import {
 import React, { ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LessonCardMenu } from './LessonCardMenu';
-import { CamelCaseToTitleCase } from '@dialoq/utils';
+import { camelCaseToTitleCase } from '@dialoq/utils';
 
 const LessonCard = ({ lesson }: { lesson: Lesson }): ReactElement => {
   const navigate = useNavigate();
@@ -70,7 +70,7 @@ const LessonCard = ({ lesson }: { lesson: Lesson }): ReactElement => {
           </Box>
           <Box>
             <Text>Grammar concept: </Text>
-            <Badge>{CamelCaseToTitleCase(lesson.subtopic)}</Badge>
+            <Badge>{camelCaseToTitleCase(lesson.subtopic)}</Badge>
           </Box>
         </VStack>
       </CardBody>
