@@ -1,6 +1,6 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import TaskDescription from './TaskDescription';
-import { Button, HStack, useToast } from '@chakra-ui/react';
+import { Button, HStack, useToast, Text } from '@chakra-ui/react';
 import { Task, Subtopic } from '@dialoq/types';
 import { useUpdateTask } from '../../services/task.service';
 import TaskRenderer from './TaskRenderer';
@@ -108,14 +108,28 @@ const TaskContainer = ({ task, subtopic }: TaskProps): ReactElement => {
         </Button>
       )}
       {taskState.type === 'INCORRECT' && (
-        <Button
-          colorScheme="gray"
-          width="full"
-          height="70px"
-          onClick={() => handleContinue()}
-        >
-          Skip
-        </Button>
+        <HStack width="100%" justifyContent="flex-end">
+          <Text
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            height="40px"
+            borderRadius={4}
+            backgroundColor="red.500"
+            textAlign="center"
+            width="full"
+            gap={1}
+          >
+            Answer: <Text as={'u'}> {task.answer}</Text>
+          </Text>
+          <Button
+            width={'70px'}
+            colorScheme="yellow"
+            onClick={() => handleContinue()}
+          >
+            Skip
+          </Button>
+        </HStack>
       )}
     </>
   );
