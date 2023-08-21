@@ -9,7 +9,7 @@ export class OpenAiService {
   private openai: OpenAIApi;
   private logger = new Logger('OpenApiService');
 
-  private defaultOptions = { model: 'gpt-3.5-turbo', temperature: 0.7 };
+  private defaultOptions = { model: 'gpt-3.5-turbo', temperature: 0.2 };
 
   public constructor() {
     const configuration = new Configuration({
