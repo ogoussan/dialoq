@@ -3,7 +3,6 @@ import {
   Lesson,
   LessonPromptParams,
   PromptTemplate,
-  Subtopic,
   TaskType,
   Topic,
 } from '@dialoq/types';
@@ -15,20 +14,6 @@ interface PromptOutputEntry {
   translation: string;
 }
 
-const additionalInstructions: {
-  [key in Subtopic]?: string;
-} = {
-  présentVerbs:
-    'If it is not clear which person and number a pronoun has provide additional information in brackets' +
-    'Example: Sie (3rd person plural) [backen] {backen} einen Kuchen für den Geburtstag',
-  presentTenseVerbs:
-    'If it is not clear which person and number a pronoun has provide additional information in brackets' +
-    'Example: Sie (3rd person plural) [backen] {backen} einen Kuchen für den Geburtstag',
-  passéComposéVerbs:
-    'If the sentences are in french the avoir or être part should be included inside the square brackets' +
-    'Example: Ils [ont adopté] {adopter} un oiseau.',
-};
-
 const squareBracketContexts: {
   [key in Topic]?: {
     content: string;
@@ -39,8 +24,8 @@ const squareBracketContexts: {
     content:
       'person and number (singular of plural) of the pronoun and also the gender of the possessive pronoun if needed.',
     example: {
-      sentence:
-        '[Mein] {1st person singular} Pass liegt sicher in [ihrer] {3rd person singular feminine} Tasche',
+      sentence: `
+         Example for Possessiv Pronouns: [Mein] {1st person singular} Pass liegt sicher in [ihrer] {3rd person singular feminine} Tasche`,
       language: Language.German,
     },
   },
@@ -51,6 +36,17 @@ const squareBracketContexts: {
       language: Language.German,
     },
   },
+};
+
+const sentenceExamples: {
+  [key in Topic]?: string;
+} = {
+  [Topic.Pronoun]: `
+    Example for Possessive Pronouns in German: [Mein] {1st person singular} Pass liegt sicher in [ihrer] {3rd person singular feminine} Tasche
+    Example for Reflexive Pronouns in German: Er hat [sich] für sein Verhalten gestern entschuldigt.
+    Example for Interrogative Pronouns in German: Wessen Jacke befindet sich auf dem Boden?`,
+  [Topic.Tense]:
+    'Example for Present Tense in German: Ich [lege] {legen} mich bald schlafen.',
 };
 
 export const clozePrompt = {
@@ -64,17 +60,16 @@ export const clozePrompt = {
   }: LessonPromptParams) => {
     const builder = new ClozePromptBuilder();
     const context = squareBracketContexts[topic];
+    const example = sentenceExamples[topic];
 
-    builder.setup(
-      taskCount,
-      subtopic,
-      theme,
-      language,
-      additionalInstructions[subtopic]
-    );
+    builder.setup(taskCount, subtopic, theme, language);
 
     if (context) {
       builder.addContexts(context.content, context.example);
+    }
+
+    if (example) {
+      builder.provideExample(example, Language.German);
     }
 
     builder.specifyOutputJson([
@@ -91,11 +86,6 @@ export const clozePrompt = {
         type: 'string',
         comment:
           'Content of all square brackets (without the brackets) in correct order and separated by comma without white space.',
-        example: {
-          sentence: '[Mein] Computer steht auf [ihren] Tisch',
-          propValue: 'Mein,ihren',
-          language: Language.German,
-        },
       },
     ]);
 

@@ -1,5 +1,3 @@
-import { Language } from '@dialoq/types';
-
 class PromptBuilder {
   protected _promptString: string;
 
@@ -16,7 +14,6 @@ class PromptBuilder {
       name: string;
       type: string;
       comment?: string;
-      example?: { sentence: string; propValue: string; language: Language };
     }[]
   ): PromptBuilder {
     this._promptString += `
@@ -26,7 +23,7 @@ class PromptBuilder {
         {
           ${outputProps.map(
             ({ name, type, comment }) => `
-              ${name}: ${type} /* ${comment} */
+              ${name}: ${type} ${comment ? `/* ${comment} */` : ''}
             `
           )}
         }

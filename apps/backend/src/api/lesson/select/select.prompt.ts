@@ -1,5 +1,4 @@
 import {
-  Language,
   Lesson,
   LessonPromptParams,
   PromptTemplate,
@@ -23,16 +22,12 @@ export const selectPrompt = {
       {
         name: 'vocabulary',
         type: 'string',
-        comment: 'untranslated vocabulary in english',
+        comment:
+          'English translation of the correct option. If the correct option is "Apfel" the value should be "Apfel"',
       },
       {
         name: 'options',
         type: 'string',
-        example: {
-          sentence: '',
-          propValue: 'Apfel,Hund,Tasche,Ball',
-          language: Language.German,
-        },
         comment:
           'contains all 4 options of which one is the correctAnswer.' +
           'They are separated by comma without whitespace like this: "Apfel,Hund,Tasche,Ball."',
