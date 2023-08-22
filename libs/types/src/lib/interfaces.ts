@@ -21,7 +21,7 @@ export interface Auth {
 export interface User extends Document {
   email: string;
   firstname: string;
-  lastname: string;
+  lastname?: string;
   role?: Role;
   image?: string;
 }
