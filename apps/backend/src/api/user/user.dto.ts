@@ -16,8 +16,9 @@ export class UserDto extends DocumentDto implements User {
   public firstname!: string;
 
   @IsString()
+  @IsOptional()
   @ApiProperty({ example: 'Lastname' })
-  public lastname!: string;
+  public lastname?: string;
 
   @IsOptional()
   @IsEnum(Role)

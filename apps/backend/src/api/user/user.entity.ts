@@ -10,8 +10,8 @@ export class UserEntity extends DocumentEntity implements User {
   @Column()
   public firstname!: string;
 
-  @Column()
-  public lastname!: string;
+  @Column({ nullable: true })
+  public lastname?: string;
 
   @Column({ type: 'enum', enum: Role, default: Role.User })
   public role?: Role = Role.User;
