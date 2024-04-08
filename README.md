@@ -1,7 +1,10 @@
 
 # Dialoq
 
-Dialoq. created with [Nx](https://nx.dev).
+Dialoq enables you to learn and practice language with the power of Generative AI.
+
+<img width="948" alt="image" src="https://github.com/ogoussan/linguai/assets/75047088/47f853cf-0e15-480e-a11f-f713a3e727d1">
+
 
 ## Requirements
 
